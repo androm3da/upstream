@@ -56,8 +56,8 @@ class Streamer(object):
         """
         try:
             urlopen(self.server, timeout=2)
-        except URLError:
-            raise ConnectError("Could not connect to server.")
+        except URLError as e:
+            raise ConnectError("Could not connect to server: {}".format(str(e)))
 
     def upload(self, filepath, shard_size=0, start_pos=0, read_size=1024,
                callback=None):
